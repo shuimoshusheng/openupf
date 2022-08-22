@@ -27,12 +27,13 @@
 void set_input_mode(int fd)
 {
 
-    struct termios stTerm;
+    struct termios stTerm;
+ 
     tcgetattr(fd,&stTerm);
 
-    //ÉèÖÃÎª·Ç¼Ó¹¤Ä£Ê½
+    //è®¾ç½®ä¸ºéåŠ å·¥æ¨¡å¼
     stTerm.c_lflag &= ~(ICANON|ECHO|ISIG);
-    //ÖÁÉÙ¶ÁÒ»¸ö×Ö·û
+    //è‡³å°‘è¯»ä¸€ä¸ªå­—ç¬¦
     stTerm.c_cc[VMIN]=1;
     stTerm.c_cc[VTIME]=0;
     if(!isatty(fd))
